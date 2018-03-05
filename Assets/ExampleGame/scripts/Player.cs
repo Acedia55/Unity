@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
     void Start () {
 
         Debug.Log(logText);
+
         ApplyDamage(1);
 	}
 	
@@ -19,7 +20,19 @@ public class Player : MonoBehaviour {
         Debug.Log(logText);
 
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.velocity = Vector2.right * speed;
+        
+        float horizontal = Input.GetAxis("Horizontal");
+        Debug.Log(horizontal);
+
+        Vector2 velocity = rigidbody.velocity;
+        velocity.x = horizontal * speed;
+
+        rigidbody.velocity = velocity;
+
+        if (Input.GetMouseButton(0))
+        {
+            Debug.Log("Mouse Button Pressed");
+        }
 
 
     }
